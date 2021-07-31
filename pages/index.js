@@ -23,7 +23,7 @@ export default function Home({products,commercePublicKey}) {
   const classes = useStyles();
 
   return (
-    <Layout title="Home" commercePublicLey={commercePublicKey}>
+    <Layout title="Home" commercePublicKey={commercePublicKey}>
       {
         products.length === 0 && <Alert>No Products Found</Alert>
       }
@@ -32,7 +32,7 @@ export default function Home({products,commercePublicKey}) {
         <Slide key={product.id} direction="up" in={true}>
 
           <Grid item md={3}>
-          <Card>
+          <Card className={classes.Card}>
             <Link href={`/products/${product.permalink}`}>
               <CardActionArea>
                 <CardMedia className={classes.Media}
@@ -69,7 +69,7 @@ export default function Home({products,commercePublicKey}) {
     </Layout>
   )
 }
-{/*
+        {/*
         <div key={product.id}>
         <Image 
         src={product.media.source} 

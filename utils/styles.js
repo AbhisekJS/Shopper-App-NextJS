@@ -43,7 +43,8 @@ export const theme = createTheme({
       fontSize: '1.2rem'
     },
     Card: {
-        width: 300,
+        width: '100%',
+        maxWidth:'300',
         margin: 'auto'
     },
     Media: {
@@ -64,8 +65,7 @@ export const theme = createTheme({
       padding: '1rem',
     },
     largeImage: {
-      maxWidth: '50rem',
-      width: '100%',
+      height: '540px'
     },
     mt1: {
       marginTop: '1rem !important',
