@@ -17,7 +17,6 @@ export default function MyApp({ pageProps, Component }) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
-
   return (
     <StoreProvider>
       <Component {...pageProps} />
