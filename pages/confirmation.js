@@ -19,14 +19,14 @@ import {
 import { useStyles } from '../utils/styles';
 import dynamic from 'next/dynamic';
 
-function Confirmation(props) {
+function Confirmation({commercePublicKey}) {
   const classes = useStyles();
   const { state } = useContext(Store);
   const { order } = state;
   console.log(order);
 
   return (
-    <Layout commercePublicKey={props.commercePublicKey} title="Order Details">
+    <Layout commercePublicKey={commercePublicKey} title="Order Details">
       {!order ? (
         <Alert icon={false} severity="error">
           No order found.
@@ -44,7 +44,7 @@ function Confirmation(props) {
                     Customer details
                   </Typography>
                   <Typography>
-                    {order.customer.firstname} {order.customer.lastname}
+                    {order.billing.name}
                   </Typography>
                   <Typography>{order.customer.email}</Typography>
                 </Card>

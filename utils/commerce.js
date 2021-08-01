@@ -8,7 +8,7 @@ function getCommerce(commercePublicKey) {
   if (commerce) {
     return commerce;
   } else {
-    const publicKey = commercePublicKey || process.env.COMMERCE_PUBLIC_KEY;
+    const publicKey = commercePublicKey || process.env.REACT_APP_COMMERCE_PUBLIC_KEY;
     const devEnvironment = process.env.NODE_ENV === 'development';
     if (devEnvironment && !publicKey) {
       throw Error('Commerce public API key not found.');

@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Router from 'next/router'
-import { useEffect } from 'react'
+import React,{ useEffect } from 'react'
 
 Router.events.on('routeChangeStart', ()=> NProgress.start())
 Router.events.on('routeChangeComplete', ()=> NProgress.done())
@@ -29,7 +29,7 @@ export default function MyApp({ pageProps, Component }) {
 MyApp.getInitialProps = async()=>{
   return {
     pageProps:{
-      commercePublicKey : process.env.COMMERCE_PUBLIC_KEY
+      commercePublicKey : process.env.REACT_APP_COMMERCE_PUBLIC_KEY
     }
   }
 }

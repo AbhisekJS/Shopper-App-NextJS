@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import { Alert } from '@material-ui/lab';
 import getCommerce from '../utils/commerce'
 import Layout from '../components/Layout'
@@ -13,7 +12,7 @@ import {
   Link, 
   Typography,
   Slide } from '@material-ui/core'
-  import { useStyles ,theme} from "../utils/styles"
+  import { useStyles} from "../utils/styles"
 
 
 export default function Home({products,commercePublicKey}) {
@@ -68,17 +67,7 @@ export default function Home({products,commercePublicKey}) {
     </Layout>
   )
 }
-        {/*
-        <div key={product.id}>
-        <Image 
-        src={product.media.source} 
-        alt={product.name}
-        width={200} height={360}        
-        />
-        <p>{product.name}</p>
-        <p>{product.price.formatted_with_symbol}</p>
-        </div>*/}
-
+      
 export async function getStaticProps(){
   const commerce = getCommerce();
   const {data : products} = await commerce.products.list()
