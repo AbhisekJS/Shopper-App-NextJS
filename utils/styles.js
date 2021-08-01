@@ -58,7 +58,7 @@ export const theme = createTheme({
     Media: {
       height: '240px',
       width: '100%',
-      objectFit: 'contain'
+      
       },
     toolbar: {
       flexWrap: 'wrap',
