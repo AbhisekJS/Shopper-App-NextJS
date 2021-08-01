@@ -11,9 +11,9 @@ import {
   Grid, 
   Link, 
   Typography,
-  Slide } from '@material-ui/core'
+  Slide,
+ } from '@material-ui/core'
   import { useStyles} from "../utils/styles"
-
 
 export default function Home({products,commercePublicKey}) {
   console.log(products)
@@ -32,7 +32,7 @@ export default function Home({products,commercePublicKey}) {
           <Grid item md={3} sm={6} xs={12}>
           <Card className={classes.Card}>
             <Link href={`/products/${product.permalink}`}>
-              <CardActionArea>
+              <CardActionArea display="flex" justify-content="center" align-items="center">
                 <CardMedia className={classes.Media}
                   component="img"                  
                   alt={product.name}
@@ -68,6 +68,9 @@ export default function Home({products,commercePublicKey}) {
   )
 }
       
+
+
+
 export async function getStaticProps(){
   const commerce = getCommerce();
   const {data : products} = await commerce.products.list()
