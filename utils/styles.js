@@ -58,7 +58,7 @@ export const theme = createTheme({
     Media: {
         height: '240px',
         maxWidth: '350px',
-        objectFit: 'contain'
+        objectFit: 'contain !important',
       },
     toolbar: {
         flexWrap: 'wrap',
@@ -73,7 +73,7 @@ export const theme = createTheme({
         padding: '1rem',
     },
     largeImage: {
-        height: '540px'
+        height: '420px'
     },
     mt1: {
         marginTop: '1rem !important',
