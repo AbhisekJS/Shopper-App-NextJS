@@ -29,7 +29,7 @@ export default function Home({products,commercePublicKey}) {
         {products.map(product => (
         <Slide key={product.id} direction="up" in={true}>
 
-          <Grid item md={3}>
+          <Grid item md={6} xs={12}>
           <Card className={classes.Card}>
             <Link href={`/products/${product.permalink}`}>
               <CardActionArea>
@@ -37,6 +37,7 @@ export default function Home({products,commercePublicKey}) {
                   component="img"                  
                   alt={product.name}
                   image={product.media.source}
+                  objectFit="contain"
                 />
                 <CardContent>
                   <Typography
