@@ -27,7 +27,7 @@ import dynamic from 'next/dynamic';
 import { Alert } from '@material-ui/lab';
 
 
-const dev = true; // remove "|| true" in production
+const dev = process.env.NODE_ENV === 'development' // remove "|| true" in production
 
 function Checkout({commercePublicKey}) {
   const classes = useStyles();
