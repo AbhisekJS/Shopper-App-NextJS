@@ -1,14 +1,11 @@
-import Head from 'next/head'
-import styles from '../../styles/Home.module.css'
+import React from 'react'
 import { Alert } from '@material-ui/lab';
 import getCommerce from '../../utils/commerce'
 import Layout from '../../components/Layout'
-import { Image, ImageTwoTone } from '@material-ui/icons'
 import { 
   Box, 
   Card, 
   Grid, 
-  Link, 
   Typography,
   Slide, 
   List,
@@ -17,21 +14,42 @@ import {
   MenuItem,
   Button} from '@material-ui/core'
   import { useStyles} from "../../utils/styles"
-  import { Fragment,useState } from 'react';
+  import { Fragment,useContext,useState } from 'react';
+  import { CART_RETRIEVE_SUCCESS } from '../../components/constants';
+  import {Store} from '../../components/Store'
+  import  Router  from 'next/router';
 
 
 export default function Product({product,commercePublicKey}) {
+  const classes = useStyles();
 
-  console.log(product);
   const [quantity,setQuantity] = useState(1);
 
-  const addToCartHandler=async()=>{
-      console.log('Todo: Add to cart')
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+  console.log(cart)
+
+  const addToCartHandler= async() =>{
+      const commerce = getCommerce(commercePublicKey)
+      const lineItem = cart.data.line_items.find(
+        (x) => x.product_id === product.id
+      )
+      
+      if (lineItem) {
+        const cartData = await commerce.cart.update(lineItem.id, {
+          quantity: quantity,
+        });
+        dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
+        Router.push('/cart');
+      } else {
+        const cartData = await commerce.cart.add(product.id, quantity);
+        dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
+        Router.push('/cart');
+      }
   }
-  const classes = useStyles();
+
   return (
-    <Layout
-    
+    <Layout    
     title={product.name}
     commercePublicKey={commercePublicKey}
   >
@@ -143,16 +161,15 @@ export default function Product({product,commercePublicKey}) {
 }
        
 
-export async function getServerSideProps({params}){
-    const {id} = params
+export async function getServerSideProps({ params }) {
+  const { id } = params;
   const commerce = getCommerce();
-  const product  = await commerce.products.retrieve(id,{
-      type:'permalink'
-  })
-  return{
-    props:{
+  const product = await commerce.products.retrieve(id, {
+    type: 'permalink',
+  });
+  return {
+    props: {
       product,
-    }
-  }
-
+    },
+  };
 }

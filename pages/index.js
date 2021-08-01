@@ -1,9 +1,8 @@
+import React from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 import { Alert } from '@material-ui/lab';
 import getCommerce from '../utils/commerce'
 import Layout from '../components/Layout'
-import { ImageTwoTone } from '@material-ui/icons'
 import { 
   Box, 
   Card,
@@ -27,7 +26,7 @@ export default function Home({products,commercePublicKey}) {
       {
         products.length === 0 && <Alert>No Products Found</Alert>
       }
-      <Grid container spacing = {1}>
+      <Grid container spacing = {1} justifyContent="center">
         {products.map(product => (
         <Slide key={product.id} direction="up" in={true}>
 

@@ -1,8 +1,26 @@
-import { AppBar, Container, CssBaseline, ThemeProvider, Link, Toolbar, Typography, Box, CircularProgress, Badge } from "@material-ui/core"
+import React from 'react'
+import { AppBar,
+   Container, 
+   CssBaseline, 
+   ThemeProvider, 
+   Link, 
+   Toolbar, 
+   Typography, 
+   Box, 
+   CircularProgress, 
+   Badge } from "@material-ui/core"
 import Head from "next/head"
-import { Fragment } from "react"
+import getCommerce from "../utils/commerce"
+import { Fragment,useContext,useEffect } from "react"
 import { useStyles ,theme} from "../utils/styles"
 import NextLink from 'next/link'
+import { Store } from './Store';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+
+import {
+  CART_RETRIEVE_REQUEST,
+  CART_RETRIEVE_SUCCESS,
+} from '../components/constants'
 
 export default function Layout({
     children,
@@ -10,6 +28,21 @@ export default function Layout({
     title = 'ShopperApp'
 }){
     const classes = useStyles();
+    const {state,dispatch} =useContext(Store);
+    const {cart} = state;
+
+    // dispatch action.type 
+
+    useEffect(() => {
+      const fetchCart = async () => {
+        const commerce = getCommerce(commercePublicKey);
+        dispatch({ type: CART_RETRIEVE_REQUEST });
+        const cartData = await commerce.cart.retrieve();
+        dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData });
+      };
+      fetchCart();
+    }, []);
+
 
     return(
         <Fragment>
@@ -51,7 +84,15 @@ export default function Layout({
                   href="/cart"
                   className={classes.link}
                 >
-                  Cart
+                  {cart.loading ? (
+                    <CircularProgress />
+                  ) : cart.data.total_items > 0 ? (
+                    <Badge badgeContent={cart.data.total_items} color="primary">
+                    <ShoppingCartOutlinedIcon />
+                    </Badge>
+                  ) : (
+                    <ShoppingCartOutlinedIcon />
+                  )}
                 </Link>
               </NextLink>
                 </nav>
