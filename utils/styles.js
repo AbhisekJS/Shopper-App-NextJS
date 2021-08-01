@@ -56,30 +56,30 @@ export const theme = createTheme({
         margin: 'auto'
     },
     Media: {
-      height: '240px',
-      width: '100%',
-      objectFit: 'contain'
+        height: '240px',
+        maxWidth: '350px',
+        objectFit: 'contain'
       },
     toolbar: {
-      flexWrap: 'wrap',
+        flexWrap: 'wrap',
     },
     toolbarTitle: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     link: {
-      margin: '1rem',
+        margin: '1rem',
     },
     main: {
-      padding: '1rem',
+        padding: '1rem',
     },
     largeImage: {
-      height: '540px'
+        height: '540px'
     },
     mt1: {
-      marginTop: '1rem !important',
+        marginTop: '1rem !important',
     },
     p1: {
-      padding: '1rem !important',
+        padding: '1rem !important',
     },
     formControl: {
       margin: theme.spacing(1),

@@ -37,7 +37,6 @@ export default function Home({products,commercePublicKey}) {
                   component="img"                  
                   alt={product.name}
                   image={product.media.source}
-                  height="140"
                 />
                 <CardContent>
                   <Typography
